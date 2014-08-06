@@ -7,6 +7,9 @@ var spock = 4;
 //creamos una lista para poder determinar el valor, segun el numero
 var opciones = ["Piedra", "Papel", "Tijera" , "Lizard", "Spock"];
 
+var win
+var loose
+
 $(document).ready(function(){
 	$('li').click(function(){
 		var opcion = ($(this).text().trim());
@@ -19,12 +22,12 @@ $(document).ready(function(){
 		};
 
 		function usuResultado(palabra){
-			document.getElementById('usuImage').innerHTML="<img src = imagenes/"+palabra+".png style='width:70px'/>"
+			document.getElementById('usuImage').innerHTML="<img src = imagenes/"+palabra+".png />"
 			document.getElementById('usuOpcion').innerHTML="<span>" + palabra + "</span>"
 		}
 
 		function pcResultado(palabra){
-			document.getElementById('pcImage').innerHTML="<img src = imagenes/"+palabra+".png style='width:70px'/>"
+			document.getElementById('pcImage').innerHTML="<img src = imagenes/"+palabra+".png />"
 			document.getElementById('pcOpcion').innerHTML="<span>" + palabra + "</span>"
 		};
 
@@ -34,16 +37,18 @@ $(document).ready(function(){
 		//Logica si es empate
 		if(opcion === numCompu){
 			pcResultado(numCompu)
+			document.getElementById("resultado").innerHTML="<span style='background-color:yellow'> Empate </span>"
+			var win = "Empate"
 		}
 
 		//Logica cuando elijamos Piedra
 		if(opcion === "Piedra"){
 			if (numCompu === "Tijera" || numCompu === "Lizard"){
 				pcResultado(numCompu)
-				document.getElementById("resultado").innerHTML="<span> Ganaste </span>"
+				document.getElementById("resultado").innerHTML="<span style='background-color:green'> Ganaste </span>"
 			}else if(numCompu === "Papel" || numCompu === "Spock"){
 				pcResultado(numCompu)
-				document.getElementById("resultado").innerHTML="<span> Perdiste </span>"
+				document.getElementById("resultado").innerHTML="<span style='background-color:red'> Perdiste </span>"
 			}
 		}
 
@@ -51,10 +56,10 @@ $(document).ready(function(){
 		if(opcion === "Papel"){
 			if (numCompu === "Piedra" || numCompu === "Spock"){
 				pcResultado(numCompu)
-				document.getElementById("resultado").innerHTML="<span> Ganaste </span>"
+				document.getElementById("resultado").innerHTML="<span style='background-color:green'> Ganaste </span>"
 			}else if(numCompu === "Tijera" || numCompu === "Lizard"){
 				pcResultado(numCompu)
-				document.getElementById("resultado").innerHTML="<span> Perdiste </span>"
+				document.getElementById("resultado").innerHTML="<span style='background-color:red'> Perdiste </span>"
 			}
 		}
 
@@ -62,10 +67,10 @@ $(document).ready(function(){
 		if(opcion === "Tijera"){
 			if (numCompu === "Papel" || numCompu === "Lizard"){
 				pcResultado(numCompu)
-				document.getElementById("resultado").innerHTML="<span> Ganaste </span>"
+				document.getElementById("resultado").innerHTML="<span style='background-color:green'> Ganaste </span>"
 			}else if(numCompu === "Piedra" || numCompu === "Spock"){
 				pcResultado(numCompu)
-				document.getElementById("resultado").innerHTML="<span> Perdiste </span>"
+				document.getElementById("resultado").innerHTML="<span style='background-color:red'> Perdiste </span>"
 			}
 		}
 
@@ -73,10 +78,10 @@ $(document).ready(function(){
 		if(opcion === "Lizard"){
 			if (numCompu === "Spock" || numCompu === "Papel"){
 				pcResultado(numCompu)
-				document.getElementById("resultado").innerHTML="<span> Ganaste </span>"
+				document.getElementById("resultado").innerHTML="<span style='background-color:green'> Ganaste </span>"
 			}else if(numCompu === "Piedra" || numCompu === "Tijera"){
 				pcResultado(numCompu)
-				document.getElementById("resultado").innerHTML="<span> Perdiste </span>"
+				document.getElementById("resultado").innerHTML="<span style='background-color:red'> Perdiste </span>"
 			}
 		}
 
@@ -84,11 +89,19 @@ $(document).ready(function(){
 		if(opcion === "Spock"){
 			if (numCompu === "Tijera" || numCompu === "Piedra"){
 				pcResultado(numCompu)
-				document.getElementById("resultado").innerHTML="<span> Ganaste </span>"
+				document.getElementById("resultado").innerHTML="<span style='background-color:green'> Ganaste </span>"
 			}else if(numCompu === "Papel" || numCompu === "Lizard"){
 				pcResultado(numCompu)
-				document.getElementById("resultado").innerHTML="<span> Perdiste </span>"
+				document.getElementById("resultado").innerHTML="<span style='background-color:red'> Perdiste </span>"
 			}
+		}
+
+		if(win === "Empate"){
+			console.log("Empate")
+		}else if (win === "Ganaste"){
+			console.log("Yeah")
+		}else{
+			console.log("Buuu!!")
 		}
 
 	})
